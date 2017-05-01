@@ -93,10 +93,10 @@
 
             <li class="text-muted menu-title">Navigation</li>
             <li><a href="/" class="waves-effect"><i class="ti-home"></i> <span> Dashboard <span class="label label-pink pull-right"></span></span></a></li>
-            <li><a href="map.html" class="waves-effect"><i class="ti-map-alt"></i> <span> Maps <span class="label label-success pull-right"></span></span></a></li>
-            <li><a href="gallery.html" class="waves-effect"><i class="ti-gallery"></i> <span> Gallery <span class="label label-primary pull-right"></span></span></a></li>
-            <li><a href="coming-soon.html" class="waves-effect"><i class="ti-alert"></i> <span> Coming-soon </span></a></li>
-            <li><a href="maintenance.html" class="waves-effect"><i class="ti-close"></i> <span> Maintenance </span></a></li>
+            <li><a href="map" class="waves-effect"><i class="ti-map-alt"></i> <span> Maps <span class="label label-success pull-right"></span></span></a></li>
+            <li><a href="gallery" class="waves-effect"><i class="ti-gallery"></i> <span> Gallery <span class="label label-primary pull-right"></span></span></a></li>
+            <li><a href="coming-soon" class="waves-effect"><i class="ti-alert"></i> <span> Coming-soon </span></a></li>
+            <li><a href="maintenance" class="waves-effect"><i class="ti-close"></i> <span> Maintenance </span></a></li>
           </ul>
           <div class="clearfix"></div>
         </div>
@@ -421,19 +421,19 @@
                             You email is required.
                         </span>
           </div>
-          <div class="form-group" ng-class="{'has-error': error.phone}">
+          <div class="form-group" ng-class="">
             <label for="position">Phone</label>
             <input type="text" class="form-control" id="position" placeholder="Enter phone" ng-model="addCrm.phone">
           </div>
           <h4 class="m-b-20 header-title"><b>Address</b></h4>
-      <div class="form-group" ng-class="{'has-error': error.companyname}">
+      <div class="form-group" ng-class="">
         <input type="text" class="form-control" id="company" placeholder="Enter latitude" ng-model="addCrm.lat">
       </div>
-      <div class="form-group" ng-class="{'has-error': error.companyname}">
+      <div class="form-group" ng-class="">
         <input type="text" class="form-control" id="company" placeholder="Enter longitude" ng-model="addCrm.lng">
       </div>
       <h4 class="m-b-20 header-title"><b>Company</b></h4>
-      <div class="form-group" ng-class="{'has-error': error.companyname}">
+      <div class="form-group" ng-class="">
         <label for="company">Company</label>
         <input type="text" class="form-control" id="company" placeholder="Enter company" ng-model="addCrm.companyname">
       </div>

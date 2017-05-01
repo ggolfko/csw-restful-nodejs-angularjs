@@ -14,9 +14,11 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080; // set our port
 
+app.set('views', './views');
+app.set('view engine', 'ejs');
+
 //Database setup
-var Crms = [
-  {
+var Crms = [{
     "id": 0,
     "name": "Leanne Graham",
     "username": "Bret",
@@ -362,6 +364,32 @@ router.route('/crms/:crm_id')
     });
   })
 
+//
+app.get('/', function(req, res) {
+
+  res.render('index.ejs'); // load the index.ejs file
+
+});
+app.get('/gallery', function(req, res) {
+
+  res.render('gallery.ejs'); // load the gallery.ejs file
+
+});
+app.get('/coming-soon', function(req, res) {
+
+  res.render('coming-soon.ejs'); // load the coming-soon.ejs file
+
+});
+app.get('/map', function(req, res) {
+
+  res.render('map.ejs'); // load the map.ejs file
+
+});
+app.get('/maintenance', function(req, res) {
+
+  res.render('maintenance.ejs'); // load the maintenance.ejs file
+
+});
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
