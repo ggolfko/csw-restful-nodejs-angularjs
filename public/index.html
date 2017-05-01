@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html ng-app="starter">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+  <title></title>
+  <base href="/" />
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-route/angular-route.js"></script>
+  <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="/bower_components/angular-resource/angular-resource.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
+  <!-- <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/bower_components/tether/dist/js/tether.min.js"></script>
+  <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
+
+  <link href="assets/plugins/custombox/dist/custombox.min.css" rel="stylesheet">
+  <link href="assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+
+  <script src="assets/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="fixed-left" ng-controller="AppController">
+
+  <!-- Begin page -->
+  <div id="wrapper">
+
+    <!-- Top Bar Start -->
+    <div class="topbar">
+
+      <!-- LOGO -->
+      <div class="topbar-left">
+        <div class="text-center">
+          <a href="/" class="logo"><i class="icon-magnet icon-c-logo"></i><span> CSW <i class="md md-album"></i> CRM</span></a>
+        </div>
+      </div>
+
+      <!-- Button mobile view to collapse sidebar menu -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="">
+            <div class="pull-left">
+              <button class="button-menu-mobile open-left">
+                                  <i class="ion-navicon"></i>
+                              </button>
+              <span class="clearfix"></span>
+            </div>
+
+            <!-- <form role="search" class="navbar-left app-search pull-left hidden-xs">
+              <input type="text" placeholder="Search..." class="form-control">
+              <a href=""><i class="fa fa-search"></i></a>
+            </form> -->
+
+
+            <ul class="nav navbar-nav navbar-right pull-right">
+              <li class="hidden-xs">
+                <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
+              </li>
+            </ul>
+          </div>
+          <!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+    <!-- Top Bar End -->
+
+
+    <!-- ========== Left Sidebar Start ========== -->
+
+    <div class="left side-menu">
+      <div class="sidebar-inner slimscrollleft">
+        <!--- Divider -->
+        <div id="sidebar-menu">
+          <ul>
+
+            <li class="text-muted menu-title">Navigation</li>
+            <li><a href="/" class="waves-effect"><i class="ti-home"></i> <span> Dashboard <span class="label label-pink pull-right"></span></span></a></li>
+            <li><a href="map.html" class="waves-effect"><i class="ti-map-alt"></i> <span> Maps <span class="label label-success pull-right"></span></span></a></li>
+            <li><a href="gallery.html" class="waves-effect"><i class="ti-gallery"></i> <span> Gallery <span class="label label-primary pull-right"></span></span></a></li>
+            <li><a href="coming-soon.html" class="waves-effect"><i class="ti-alert"></i> <span> Coming-soon </span></a></li>
+            <li><a href="maintenance.html" class="waves-effect"><i class="ti-close"></i> <span> Maintenance </span></a></li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+      <!-- Start content -->
+      <div class="content">
+        <div class="container">
+
+          <!-- Page-Title -->
+          <div class="row">
+            <div class="col-sm-12">
+              <h1 class="page-title"><span class="label label-default">Customer Relationship Management</span></h1>
+              <ol class="breadcrumb">
+
+              </ol>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-8">
+              <div class="card-box">
+                <div class="row">
+                  <div class="col-sm-8">
+                    <form role="form">
+                      <div class="form-group contact-search m-b-30">
+                        <input type="text" id="search" class="form-control" placeholder="Search..." ng-model="searchText">
+                        <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
+                      </div>
+                      <!-- form-group -->
+                    </form>
+                  </div>
+                  <div class="col-sm-4">
+                    <a href="#create-modal" class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" data-overlaySpeed="200" data-overlayColor="#36404a"><i class="md md-add"></i> Add Contact</a>
+                  </div>
+                </div>
+                <!-- <div class="" ng-if="!isEmpty(result)">
+                  <div class="alert alert-{{result.status}} alert-dismissable">
+                    <p ng-bind-html="result.message"></p>
+                  </div>
+                </div> -->
+                <div class="table-responsive">
+                  <table class="table table-hover mails m-0 table table-actions-bar">
+                    <thead>
+                      <tr>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Company</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="crm in crms  | filter:searchText track by $index" ng-if="!isEmpty(crm)">
+                        <td>{{ $index+1 }}</td>
+                        <td>
+                          <img src="{{crm.picUrl}}" alt="contact-img" title="contact-img" class="img-circle thumb-sm" />
+                        </td>
+                        <td>
+                          {{crm.name}}
+                        </td>
+                        <td>
+                          {{crm.username}}
+                        </td>
+                        <td>
+                          <a href="mailto:{{crm.email}}">{{crm.email}}</a>
+                        </td>
+                        <td>
+                          <a href="tel:{{crm.phone}}">{{crm.phone}}</a>
+                        </td>
+                        <td>
+                          {{crm.company.name}}
+                        </td>
+                        <!-- <td>
+
+                          <a href="{{crm.fbUrl}}"><button type="button" class="btn btn-facebook waves-effect waves-light">
+                             <i class="fa fa-facebook m-r-5"></i> Facebook
+                          </button></a>
+
+                        </td> -->
+                        <td>
+                          <a href="#" ng-click="edit(crm.id)" class="table-action-btn"><i class="md md-edit"></i></a>
+                          <a href="#" ng-click="delete(crm.id)" class="table-action-btn"><i class="md md-close"></i></a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- end col -->
+
+            </div>
+            <div class="col-lg-4" ng-if="!isEmpty(editCrm)">
+              <div class="card-box">
+                <div class="contact-card">
+                  <a class="pull-left" href="#">
+                    <img class="img-circle" src="{{editCrm.picUrl}}" alt="">
+                  </a>
+                  <div class="member-info">
+                    <h4 class="m-t-0 m-b-5 header-title"><b>{{editCrm.name}}</b></h4>
+                    <p class="text-muted">{{editCrm.username}}</p>
+                    <p class="text-dark"><i class="md md-business m-r-10"></i><small>{{editCrm.companyname}}</small></p>
+                    <div class="m-t-20">
+                      <a href="mailto:{{editCrm.mail}}" class="btn btn-purple waves-effect waves-light btn-sm">Send email</a>
+                      <a href="#" class="btn btn-success waves-effect waves-light btn-sm m-l-5" ng-disabled="data.executed" ng-click="update(editCrm.id)">Update</a>
+                      <a href="tel:{{editCrm.tell}}" class="btn btn-pink waves-effect waves-light btn-sm m-l-5">Call</a>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="">
+                  <div class="p-20">
+                    <h4 class="m-b-20 header-title"><b>Details</b></h4>
+                    <div class="nicescroll p-l-r-10" style="">
+                      <form class="form-horizontal" role="form" action="" method="post">
+                        <input type="hidden" id="id" ng-model="editCrm.id">
+                        <div class="form-group" ng-class="{'has-error': error.picUrl}">
+                          <label class="col-md-2 control-label">PicUrl</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.picUrl">
+                            <span class="help-block" ng-show="error.picUrl">
+                                            You picture url is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.name}">
+                          <label class="col-md-2 control-label">Name</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.name">
+                            <span class="help-block" ng-show="error.name">
+                                            You name is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.username}">
+                          <label class="col-md-2 control-label">Username</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.username">
+                            <span class="help-block" ng-show="error.username">
+                                            You usermane is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.email}">
+                          <label class="col-md-2 control-label">Email</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.email">
+                            <span class="help-block" ng-show="error.email">
+                                            You email is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <h4 class="m-b-20 header-title"><b>Address</b></h4>
+                        <div class="form-group" ng-class="{'has-error': error.street}">
+                          <label class="col-md-2 control-label">Street</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.street">
+                            <span class="help-block" ng-show="error.street">
+                                            You stresst is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.suite}">
+                          <label class="col-md-2 control-label">Suite</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.suite">
+                            <span class="help-block" ng-show="error.suite">
+                                            You suite is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.city}">
+                          <label class="col-md-2 control-label">City</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.city">
+                            <span class="help-block" ng-show="error.city">
+                                            You city is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.zipcode}">
+                          <label class="col-md-2 control-label">Zipcode</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.zipcode">
+                            <span class="help-block" ng-show="error.zipcode">
+                                            You zipcode is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.lat}">
+                          <label class="col-md-2 control-label">Latitude</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.lat">
+                            <span class="help-block" ng-show="error.lat">
+                                            You latitude is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.lng}">
+                          <label class="col-md-2 control-label">Longitude</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.lng">
+                            <span class="help-block" ng-show="error.lng">
+                                            You longtitude is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.phone}">
+                          <label class="col-md-2 control-label">Phone</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.phone">
+                            <span class="help-block" ng-show="error.phone">
+                                            You phone is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.website}">
+                          <label class="col-md-2 control-label">Website</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.website">
+                            <span class="help-block" ng-show="error.website">
+                                            You website is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <h4 class="m-b-20 header-title"><b>Company</b></h4>
+                        <div class="form-group" ng-class="{'has-error': error.companyname}">
+                          <label class="col-md-2 control-label">Name</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.companyname">
+                            <span class="help-block" ng-show="error.companyname">
+                                            You company name is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.catchPhrase}">
+                          <label class="col-md-2 control-label">CatchPhrase</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.catchPhrase">
+                            <span class="help-block" ng-show="error.catchPhrase">
+                                            You catchphrase is required.
+                                        </span>
+                          </div>
+                        </div>
+                        <div class="form-group" ng-class="{'has-error': error.bs}">
+                          <label class="col-md-2 control-label">Bs.</label>
+                          <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="editCrm.bs">
+                            <span class="help-block" ng-show="error.bs">
+                                            You bs is required.
+                                        </span>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- container -->
+
+      </div>
+      <!-- content -->
+
+      <footer class="footer text-right">
+        2017 © client-server with crm.
+      </footer>
+
+    </div>
+
+
+    <!-- Create Modal -->
+    <div id="create-modal" class="modal-demo">
+      <button type="button" class="close" onclick="Custombox.close();">
+      <span>&times;</span><span class="sr-only">Close</span>
+  </button>
+      <h4 class="custom-modal-title">Add Contact</h4>
+      <div class="custom-modal-text text-left">
+        <form role="form" ng-submit="add($event)">
+          <div class="form-group" ng-class="{'has-error': error.picUrl}">
+            <label for="picUrl">PicUrl</label>
+            <input type="text" class="form-control" placeholder="Enter picurl" ng-model="addCrm.picUrl">
+            <span class="help-block" ng-show="error.picUrl">
+                            You picture url is required.
+                        </span>
+          </div>
+          <div class="form-group" ng-class="{'has-error': error.name}">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="addCrm.name" ng-init="addCrm.name=''">
+            <span class="help-block" ng-show="error.name">
+                            You name is required.
+                        </span>
+          </div>
+          <div class="form-group" ng-class="{'has-error': error.username}">
+            <label for="name">Username</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter username" ng-model="addCrm.username" ng-init="addCrm.username=''">
+            <span class="help-block" ng-show="error.name">
+                            You username is required.
+                        </span>
+          </div>
+          <div class="form-group" ng-class="{'has-error': error.email}">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" ng-model="addCrm.email" ng-init="addCrm.email=''">
+            <span class="help-block" ng-show="error.email">
+                            You email is required.
+                        </span>
+          </div>
+          <div class="form-group" ng-class="{'has-error': error.phone}">
+            <label for="position">Phone</label>
+            <input type="text" class="form-control" id="position" placeholder="Enter phone" ng-model="addCrm.phone">
+          </div>
+          <h4 class="m-b-20 header-title"><b>Address</b></h4>
+      <div class="form-group" ng-class="{'has-error': error.companyname}">
+        <input type="text" class="form-control" id="company" placeholder="Enter latitude" ng-model="addCrm.lat">
+      </div>
+      <div class="form-group" ng-class="{'has-error': error.companyname}">
+        <input type="text" class="form-control" id="company" placeholder="Enter longitude" ng-model="addCrm.lng">
+      </div>
+      <h4 class="m-b-20 header-title"><b>Company</b></h4>
+      <div class="form-group" ng-class="{'has-error': error.companyname}">
+        <label for="company">Company</label>
+        <input type="text" class="form-control" id="company" placeholder="Enter company" ng-model="addCrm.companyname">
+      </div>
+
+      <button type="submit" ng-disabled="data.executed" class="btn btn-default waves-effect waves-light">Save</button>
+      <button type="button" onclick="Custombox.close();" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- End Right content here -->
+  <!-- ============================================================== -->
+
+
+  </div>
+  <!-- END wrapper -->
+
+  <script>
+    var resizefunc = [];
+  </script>
+
+  <!-- jQuery  -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/detect.js"></script>
+  <script src="assets/js/fastclick.js"></script>
+  <script src="assets/js/jquery.slimscroll.js"></script>
+  <script src="assets/js/jquery.blockUI.js"></script>
+  <script src="assets/js/waves.js"></script>
+  <script src="assets/js/wow.min.js"></script>
+  <script src="assets/js/jquery.nicescroll.js"></script>
+  <script src="assets/js/jquery.scrollTo.min.js"></script>
+  <script src="assets/js/jquery.core.js"></script>
+  <script src="assets/js/jquery.app.js"></script>
+  <!-- Sweet-Alert  -->
+  <script src="assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- Modal-Effect -->
+  <script src="assets/plugins/custombox/dist/custombox.min.js"></script>
+  <script src="assets/plugins/custombox/dist/legacy.min.js"></script>
+  <!-- core script  app -->
+  <script src="js/app.js"></script>
+  <script type="text/javascript">
+    ! function($) {
+      "use strict";
+
+      var SweetAlert = function() {};
+
+      //examples
+      SweetAlert.prototype.init = function() {
+
+          //Basic
+          $('#sa-basic').click(function() {
+            swal("Here's a message!");
+          });
+
+          //A title with a text under
+          $('#sa-title').click(function() {
+            swal("Here's a message!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat, tincidunt vitae ipsum et, pellentesque maximus enim. Mauris eleifend ex semper, lobortis purus sed, pharetra felis")
+          });
+
+          //Success Message
+          $('#sa-success').click(function() {
+            swal("Good job!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat, tincidunt vitae ipsum et, pellentesque maximus enim. Mauris eleifend ex semper, lobortis purus sed, pharetra felis", "success")
+          });
+
+          //Warning Message
+          $('#sa-warning').click(function() {
+            swal({
+              title: "Are you sure?",
+              text: "You will not be able to recover this imaginary file!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, delete it!",
+              closeOnConfirm: false
+            }, function() {
+              swal("Deleted!", "Your imaginary file has been deleted.", "success");
+            });
+          });
+
+          //Parameter
+          $('#sa-params').click(function() {
+            swal({
+              title: "Are you sure?",
+              text: "You will not be able to recover this imaginary file!",
+              type: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#DD6B55",
+              confirmButtonText: "Yes, delete it!",
+              cancelButtonText: "No, cancel plx!",
+              closeOnConfirm: false,
+              closeOnCancel: false
+            }, function(isConfirm) {
+              if (isConfirm) {
+                swal("Deleted!", "Your imaginary file has been deleted.", "success");
+              } else {
+                swal("Cancelled", "Your imaginary file is safe :)", "error");
+              }
+            });
+          });
+
+          //Custom Image
+          $('#sa-image').click(function() {
+            swal({
+              title: "Sweet!",
+              text: "Here's a custom image.",
+              imageUrl: "assets/plugins/sweetalert/thumbs-up.jpg"
+            });
+          });
+
+          //Auto Close Timer
+          $('#sa-close').click(function() {
+            swal({
+              title: "Auto close alert!",
+              text: "I will close in 2 seconds.",
+              timer: 2000,
+              showConfirmButton: false
+            });
+          });
+
+
+        },
+        //init
+        $.SweetAlert = new SweetAlert, $.SweetAlert.Constructor = SweetAlert
+    }(window.jQuery),
+
+    //initializing
+    function($) {
+      "use strict";
+      $.SweetAlert.init()
+    }(window.jQuery);
+  </script>
+
+</body>
+
+<body>
+
+
+</html>
