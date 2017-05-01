@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="starter">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+	<meta name="author" content="Coderthemes">
+
+	<title></title>
+
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/core.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/components.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
+	<link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+	<base href="/" />
+	<link href="assets/plugins/sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css">
+	<script src="/bower_components/angular/angular.js"></script>
+	<script src="/bower_components/angular-route/angular-route.js"></script>
+	<script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+
+	<!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+	<script src="assets/js/modernizr.min.js"></script>
+
+</head>
+
+<body ng-controller="AppController">
+
+	<div class="account-pages"></div>
+	<div class="clearfix"></div>
+
+	<div class="wrapper-page">
+		<div class="card-box">
+			<div class="panel-heading">
+				<h3 class="text-center"> Sign In to <strong class="text-custom">CRMs</strong></h3>
+			</div>
+
+			<div class="panel-body">
+				<form class="form-horizontal m-t-20" ng-click="login()">
+
+					<div class="form-group " ng-class="{'has-error': error.user}">
+						<div class="col-xs-12">
+							<input class="form-control" type="text" ng-model="data.user" placeholder="Username">
+							<span class="help-block" ng-show="error.user">
+	                            You Username is required.
+	                        </span>
+						</div>
+					</div>
+
+					<div class="form-group" ng-class="{'has-error': error.password}">
+						<div class="col-xs-12">
+							<input class="form-control" type="password" ng-model="data.password" placeholder="Password">
+							<span class="help-block" ng-show="error.password">
+	                            You Password is required.
+	                        </span>
+						</div>
+					</div>
+
+					<div class="form-group ">
+						<div class="col-xs-12">
+							<div class="checkbox checkbox-primary">
+								<input id="checkbox-signup" type="checkbox">
+								<label for="checkbox-signup"> Remember me </label>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form-group text-center m-t-40">
+						<div class="col-xs-12">
+							<button class="btn btn-pink btn-block text-uppercase waves-effect waves-light" type="submit">
+									Log In
+								</button>
+						</div>
+					</div>
+
+					<div class="form-group m-t-20 m-b-0">
+						<div class="col-sm-12">
+							<a href="page-recoverpw.html" class="text-dark"><i class="fa fa-lock m-r-5"></i> Forgot your password?</a>
+						</div>
+					</div>
+
+					<div class="form-group m-t-20 m-b-0">
+						<div class="col-sm-12 text-center">
+							<h4><b>Sign in with</b></h4>
+						</div>
+					</div>
+				</form>
+				<div class="form-group m-b-0 text-center">
+					<div class="col-sm-12">
+						<a href="auth/facebook" type="button" class="btn btn-facebook waves-effect waves-light m-t-20">
+							<i class="fa fa-facebook m-r-5"></i> Facebook
+						</a>
+
+						<a type="button" class="btn btn-twitter waves-effect waves-light m-t-20" ng-click="login()">
+							<i class="fa fa-twitter m-r-5"></i> Twitter
+						</a>
+
+						<a type="button" class="btn btn-googleplus waves-effect waves-light m-t-20" ng-click="login()">
+							<i class="fa fa-google-plus m-r-5"></i> Google+
+						</a>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<p>
+					Don't have an account? <a href="page-register.html" class="text-primary m-l-5"><b>Sign Up</b></a>
+				</p>
+			</div>
+		</div>
+
+	</div>
+
+	<script>
+		var resizefunc = [];
+	</script>
+
+	<!-- jQuery  -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/detect.js"></script>
+	<script src="assets/js/fastclick.js"></script>
+	<script src="assets/js/jquery.slimscroll.js"></script>
+	<script src="assets/js/jquery.blockUI.js"></script>
+	<script src="assets/js/waves.js"></script>
+	<script src="assets/js/wow.min.js"></script>
+	<script src="assets/js/jquery.nicescroll.js"></script>
+	<script src="assets/js/jquery.scrollTo.min.js"></script>
+	<!-- Sweet-Alert  -->
+	<script src="assets/plugins/sweetalert/dist/sweetalert.min.js"></script>
+	<!-- core script  app -->
+	<script src="js/app.js"></script>
+	<script src="assets/js/jquery.core.js"></script>
+	<script src="assets/js/jquery.app.js"></script>
+
+</body>
+
+</html>

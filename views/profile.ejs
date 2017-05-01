@@ -21,22 +21,6 @@
   <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
   <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
   <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
-  <style>
-    /* Always set the map height explicitly to define the size of the div
-     * element that contains the map. */
-
-    #map {
-      height: 650px;
-    }
-    /* Optional: Makes the sample page fill the window. */
-
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
 
   <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -131,130 +115,94 @@
       <!-- Start content -->
       <div class="content">
         <div class="container">
-
-          <!-- Page-Title -->
-          <div class="row">
-            <div class="col-sm-12">
-              <h1 class="page-title"><span class="label label-default">CRM Maps</span></h1>
-              <ol class="breadcrumb">
-              </ol>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="card-box">
-                <div id="map"></div>
+          <div class="wraper container-fluid">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="bg-picture text-center">
+                  <div class="bg-picture-overlay"></div>
+                  <div class="profile-info-name">
+                    <img src="http://graph.facebook.com/<%= user.id %>/picture?type=large" class="thumb-lg img-circle img-thumbnail" alt="profile-image">
+                    <h4 class="m-b-5"><b><%= user.displayName %></b></h4>
+                    <p class="text-muted"><i class="fa fa-map-marker"></i> <%= user.provider %></p>
+                  </div>
+                </div>
+                <!--/ meta -->
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- container -->
+
+            <div class="row">
+              <div class="col-md-4">
+                <% if (!user) { %>
+                  <% } else { %>
+                    <div class="card-box m-t-20">
+                      <h4 class="m-t-0 header-title"><b>Personal Information</b></h4>
+                      <div class="p-20">
+                        <div class="about-info-p">
+                          <strong>Full Name</strong>
+                          <br>
+                          <p class="text-muted"><%= user.displayName %></p>
+                        </div>
+                        <div class="about-info-p">
+                          <strong>Mobile</strong>
+                          <br>
+                          <p class="text-muted">(123) 123 1234</p>
+                        </div>
+                        <div class="about-info-p">
+                          <strong>Email</strong>
+                          <br>
+                          <p class="text-muted">johnathan@ubold.com</p>
+                        </div>
+                        <div class="about-info-p m-b-0">
+                          <strong>Location</strong>
+                          <br>
+                          <p class="text-muted">USA</p>
+                        </div>
+                      </div>
+                    </div>
+                    <% } %>
+
+              </div>
+            </div>
+
+            <!-- container -->
+
+          </div>
+          <!-- content -->
+
+          <footer class="footer">
+            2017 © client-server with crm.
+          </footer>
+
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+
+
 
       </div>
-      <!-- content -->
+      <!-- END wrapper -->
 
-      <footer class="footer">
-        2017 © client-server with crm.
-      </footer>
+      <script>
+        var resizefunc = [];
+      </script>
 
-    </div>
-    <!-- ============================================================== -->
-    <!-- End Right content here -->
-    <!-- ============================================================== -->
+      <!-- jQuery  -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/bootstrap.min.js"></script>
+      <script src="assets/js/detect.js"></script>
+      <script src="assets/js/fastclick.js"></script>
+      <script src="assets/js/jquery.slimscroll.js"></script>
+      <script src="assets/js/jquery.blockUI.js"></script>
+      <script src="assets/js/waves.js"></script>
+      <script src="assets/js/wow.min.js"></script>
+      <script src="assets/js/jquery.nicescroll.js"></script>
+      <script src="assets/js/jquery.scrollTo.min.js"></script>
 
+      <script src="assets/js/jquery.core.js"></script>
+      <script src="assets/js/jquery.app.js"></script>
 
-
-  </div>
-  <!-- END wrapper -->
-
-  <script>
-    var resizefunc = [];
-  </script>
-
-  <!-- jQuery  -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.min.js"></script>
-  <script src="assets/js/detect.js"></script>
-  <script src="assets/js/fastclick.js"></script>
-  <script src="assets/js/jquery.slimscroll.js"></script>
-  <script src="assets/js/jquery.blockUI.js"></script>
-  <script src="assets/js/waves.js"></script>
-  <script src="assets/js/wow.min.js"></script>
-  <script src="assets/js/jquery.nicescroll.js"></script>
-  <script src="assets/js/jquery.scrollTo.min.js"></script>
-
-
-  <script src="assets/js/jquery.core.js"></script>
-  <script src="assets/js/jquery.app.js"></script>
-  <script>
-    function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 2,
-        center: {
-          lat: 0.980221,
-          lng: -26.127083
-        }
-      });
-      setMarkers(map);
-    }
-
-    function setMarkers(map) {
-
-      const url = 'http://localhost:8080/api/crms/';
-      fetch(url)
-        .then((resp) => resp.json())
-        .then(function(data) {
-          var dataJson = data;
-          // Adds markers to the map.
-
-          // Marker sizes are expressed as a Size of X,Y where the origin of the image
-          // (0,0) is located in the top left of the image.
-
-          // Origins, anchor positions and coordinates of the marker increase in the X
-          // direction to the right and in the Y direction down.
-          var image = {
-            url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-            // This marker is 20 pixels wide by 32 pixels high.
-            size: new google.maps.Size(20, 32),
-            // The origin for this image is (0, 0).
-            origin: new google.maps.Point(0, 0),
-            // The anchor for this image is the base of the flagpole at (0, 32).
-            anchor: new google.maps.Point(0, 32)
-          };
-          // Shapes define the clickable region of the icon. The type defines an HTML
-          // <area> element 'poly' which traces out a polygon as a series of X,Y points.
-          // The final coordinate closes the poly by connecting to the first coordinate.
-          var shape = {
-            coords: [1, 1, 1, 20, 18, 20, 18, 1],
-            type: 'poly'
-          };
-          for (var i = 0; i < dataJson.length; i++) {
-            var beach = dataJson[i];
-            console.log(beach);
-            var marker = new google.maps.Marker({
-              position: {
-                lat: parseFloat(dataJson[i].address.geo.lat),
-                lng: parseFloat(dataJson[i].address.geo.lng)
-              },
-              map: map,
-              icon: image,
-              shape: shape,
-              title: dataJson[i].name,
-              zIndex: dataJson[i].id
-            });
-          }
-        })
-        .catch(function(error) {
-          console.log(JSON.stringify(error));
-        });
-
-    }
-  </script>
-
-
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYIKkO-RSgkr-MMSFxUgT9m8onu-yBvJg&callback=initMap">
-  </script>
 
 
 </body>

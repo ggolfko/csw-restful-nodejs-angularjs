@@ -3,7 +3,10 @@
 var express = require('express'); // call express
 var app = express(); // define our app using express
 var bodyParser = require('body-parser');
-
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook').Strategy;
+var session = require('express-session');
+var config = require('./config/config');
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({
@@ -17,6 +20,100 @@ var port = process.env.PORT || 8080; // set our port
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
+app.use(session({
+  secret: 'keyboard cat',
+  key: 'UvuvwevwevweOnyetenyevweUgwemuhwem',
+  // cookie: {
+  //   maxAge: 60000
+  // },
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+/**
+ * facebook
+ * @type {Array}
+ */
+// Passport session setup.
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+//Passport Router
+app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/error'
+  }),
+  function(req, res) {
+    res.redirect('/');
+  });
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login')
+}
+// Use the FacebookStrategy within Passport.
+passport.use(new FacebookStrategy({
+    clientID: config.facebook_api_key,
+    clientSecret: config.facebook_api_secret,
+    callbackURL: config.callback_url
+  },
+  function(accessToken, refreshToken, profile, done) {
+    process.nextTick(function() {
+      //Check whether the User exists or not using profile.id
+      //Further DB code.
+      return done(null, profile);
+    });
+  }
+));
+//
+// app.get('/user', function(req, res) {
+//   res.json({
+//     message: req.user
+//   });
+// });
+app.get('/login', function(req, res) {
+  res.render('login'); // load the login.ejs file
+});
+app.get('/', ensureAuthenticated, function(req, res) {
+  res.render('index', {
+    user: req.user
+  }); // load the index.ejs file
+});
+app.get('/profile', ensureAuthenticated, function(req, res) {
+  res.render('profile.ejs', {
+    user: req.user
+  }); // load the gallery.ejs file
+});
+app.get('/gallery', ensureAuthenticated, function(req, res) {
+  res.render('gallery.ejs', {
+    user: req.user
+  }); // load the gallery.ejs file
+});
+app.get('/map', ensureAuthenticated, function(req, res) {
+  res.render('map.ejs', {
+    user: req.user
+  }); // load the map.ejs file
+});
+app.get('/coming-soon', function(req, res) {
+  res.render('coming-soon.ejs'); // load the coming-soon.ejs file
+});
+
+app.get('/maintenance', function(req, res) {
+  res.render('maintenance.ejs'); // load the maintenance.ejs file
+});
 //Database setup
 var Crms = [{
     "id": 0,
@@ -364,32 +461,6 @@ router.route('/crms/:crm_id')
     });
   })
 
-//
-app.get('/', function(req, res) {
-
-  res.render('index.ejs'); // load the index.ejs file
-
-});
-app.get('/gallery', function(req, res) {
-
-  res.render('gallery.ejs'); // load the gallery.ejs file
-
-});
-app.get('/coming-soon', function(req, res) {
-
-  res.render('coming-soon.ejs'); // load the coming-soon.ejs file
-
-});
-app.get('/map', function(req, res) {
-
-  res.render('map.ejs'); // load the map.ejs file
-
-});
-app.get('/maintenance', function(req, res) {
-
-  res.render('maintenance.ejs'); // load the maintenance.ejs file
-
-});
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);

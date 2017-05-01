@@ -219,7 +219,7 @@ app.controller('AppController', function($scope, $resource, $rootScope) {
         picUrl: $scope.addCrm.picUrl
       })
       $scope.crms = Crm.query();
-
+      $scope.addCrm = {};
       Custombox.close();
       swal({
         title: "Well done! You successfully Crm:name " + $scope.addCrm.name + " is created.",
@@ -230,6 +230,7 @@ app.controller('AppController', function($scope, $resource, $rootScope) {
       });
       $scope.result.status = 'success'
       $scope.result.message = '<strong>Well done!</strong> You successfully Crm:name ' + $scope.addCrm.name + ' is created.'
+
     }
   }
 
@@ -242,5 +243,17 @@ app.controller('AppController', function($scope, $resource, $rootScope) {
     return id == obj.id
   }
 
+  $scope.login = function() {
+    $scope.error.password = (!$scope.data.password || $scope.data.password.trim() === '') ? true : false;
+    $scope.error.user = (!$scope.data.username || $scope.data.password.trim() === '') ? true : false;
+    if (!$scope.error.password && !$scope.error.user) {}
+    swal({
+      title: "Available login on facebook",
+      text: "I will close in 2 seconds.",
+      type: "warning",
+      timer: 2000,
+      showConfirmButton: false
+    });
+  }
 
 });
